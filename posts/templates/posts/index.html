@@ -5,9 +5,13 @@
 {% endblock %}
 
 {% block content_title%}
-    Blueprint title
+    Посты
 {% endblock %}
 
 {% block content%}
-    Blueprint content
+    {% for post in posts %}
+        <p>
+            {{post.title}}
+        </p>
+    {% endfor %}
 {% endblock %}
