@@ -13,9 +13,7 @@
 {% block content %}
     <div class="tags">
         {% for tag in tags %}
-            <a href="{{url_for('posts.tag_detail', slug = tag.slug) }}">
-                <button type="button" class="btn btn-link">{{ tag.name }}</button>
-            </a>
+            <a class="badge badge-primary" href="{{url_for('posts.tag_detail', slug = tag.slug) }}">{{ tag.name }}</a>
         {% endfor%}
     </div>
     {{ post.body }}
