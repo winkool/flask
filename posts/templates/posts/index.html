@@ -9,9 +9,32 @@
 {% endblock %}
 
 {% block content%}
-    {% for post in posts %}
+    {% for post in pages.items %}
         <p margin="1">
             <a href="{{ url_for('posts.postBySlug', slug = post.slug) }}">{{post.title}}</a>
         </p>
     {% endfor %}
+    <nav>
+
+        <ul class="pagination justify-content-left">
+            <li {% if not pages.has_prev %} class="page-item disabled" {% endif %}>
+                <a class="page-link" href="./?page={{ pages.prev_num }}" tabindex="-1" aria-disabled="true">
+                    Previous
+                </a>
+            </li>
+            {% for page in pages.iter_pages() %}
+                <li class="page-item {% if page == pages.page %} active {% endif %}">
+                    <a class="page-link" href="./?page={{ page }}">
+                        {{page}}
+                    </a>
+                </li>
+            {% endfor %}
+
+            <li {% if not pages.has_next %} class="page-item disabled" {% endif %}>
+                <a class="page-link" href="./?page={{ pages.next_num }}">
+                    Next
+                </a>
+            </li>
+        </ul>
+    </nav>
 {% endblock %}

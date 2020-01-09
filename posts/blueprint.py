@@ -38,13 +38,18 @@ def create_post():
 @posts.route('/')
 def index():
     q = request.args.get('q')
+    page = request.args.get('page')
+    if page and page.isdigit():
+        page = int(page)
+    else:
+        page = 1
     if q:
         posts = Post.query.filter(Post.title.contains(q)
-                                  | Post.body.contains(q)).order_by(Post.created.desc()).all()
+                                  | Post.body.contains(q)).order_by(Post.created.desc())#.all()
     else:
-        posts = Post.query.order_by(Post.created.desc()).all()
-
-    return render_template('posts/index.html', posts=posts)
+        posts = Post.query.order_by(Post.created.desc())#.all()
+    pages = posts.paginate(page=page, per_page=5)
+    return render_template('posts/index.html', pages=pages)
     # reqTemp = {}
     # for post in posts:
     #     reqTemp[post.id]={'title': post.title, 'content': post.body, 'datetime': str(post.created)}

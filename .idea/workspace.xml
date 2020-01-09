@@ -4,8 +4,8 @@
     <list default="true" id="43f4d02e-ec68-47cc-b17e-d7f48c1e5663" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/posts/blueprint.py" beforeDir="false" afterPath="$PROJECT_DIR$/posts/blueprint.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/posts/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/posts/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/posts/templates/posts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/posts/templates/posts/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Base.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -151,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578578088160</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="В форму создания поста - добавлено поле для тегов">
+      <created>1578608774679</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1578608774679</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -174,6 +181,7 @@
     <MESSAGE value="добавлены теги" />
     <MESSAGE value="добавлена форма для публикации новых постов /blog/create" />
     <MESSAGE value="добавлена кнопка с ссылкой на /blog/create" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавлена кнопка с ссылкой на /blog/create" />
+    <MESSAGE value="В форму создания поста - добавлено поле для тегов" />
+    <option name="LAST_COMMIT_MESSAGE" value="В форму создания поста - добавлено поле для тегов" />
   </component>
 </project>
