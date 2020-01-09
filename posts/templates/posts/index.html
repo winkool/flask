@@ -10,7 +10,7 @@
 
 {% block content%}
     {% for post in posts %}
-        <p>
+        <p margin="1">
             <a href="{{ url_for('posts.postBySlug', slug = post.slug) }}">{{post.title}}</a>
         </p>
     {% endfor %}

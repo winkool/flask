@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from models import Post, Tag
+from models import Post, Tag, slugify
 from .forms import PostForm
 from app import db
 
@@ -12,9 +12,19 @@ def create_post():
     if request.method == "POST":
         title = request.form['title']
         body = request.form['body']
+        tags = request.form['tags']
         try:
             post = Post(title=title, body=body)
             db.session.add(post)
+            tagList = list(tags.split(','))
+            for i in range(len(tagList)):
+                tagList[i] = tagList[i].strip()
+                if Tag.query.filter(Tag.slug == slugify(tagList[i])).first():
+                    pass
+                else:
+                    tag = Tag(name=tagList[i])
+                    db.session.add(tag)
+                post.tags.append(tag)
             db.session.commit()
         except:
             pass
