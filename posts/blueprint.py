@@ -13,18 +13,19 @@ def create_post():
         title = request.form['title']
         body = request.form['body']
         tags = request.form['tags']
+
+        post = Post(title=title, body=body)
+        db.session.add(post)
+        tagList = list(tags.split(','))
+        for i in range(len(tagList)):
+            tagList[i] = tagList[i].strip()
+            if Tag.query.filter(Tag.slug == slugify(tagList[i])).first():
+                pass
+            else:
+                tag = Tag(name=tagList[i])
+                db.session.add(tag)
+            post.tags.append(tag)
         try:
-            post = Post(title=title, body=body)
-            db.session.add(post)
-            tagList = list(tags.split(','))
-            for i in range(len(tagList)):
-                tagList[i] = tagList[i].strip()
-                if Tag.query.filter(Tag.slug == slugify(tagList[i])).first():
-                    pass
-                else:
-                    tag = Tag(name=tagList[i])
-                    db.session.add(tag)
-                post.tags.append(tag)
             db.session.commit()
         except:
             pass
@@ -33,6 +34,23 @@ def create_post():
 
     form = PostForm()
     return render_template('posts/create_post.html', form=form)
+
+
+@posts.route('/<slug>/edit/', methods=['POST', 'GET'])
+def edit_post(slug):
+    post = Post.query.filter(Post.slug == slug).first()
+    if request.method == "POST":
+        form = PostForm(formdata=request.form, obj=post)
+        form.populate_obj(post)
+        try:
+            db.session.commit()
+        except:
+            pass
+        finally:
+            return redirect(url_for('posts.postBySlug', slug=post.slug))
+    else:
+        form = PostForm(obj=post)
+        return render_template('posts/edit_post.html', post=post, form=form)
 
 
 @posts.route('/')
